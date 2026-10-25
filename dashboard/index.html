@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Cloud Security — Live Hack-and-Defend</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <h1>🛰️ Cloud Security — Live Hack-and-Defend</h1>
+    <div class="topbar-right">
+      <label for="stage-select">Stage:</label>
+      <select id="stage-select">
+        <option value="0">Idle</option>
+        <option value="1">1 — Recon</option>
+        <option value="2">2 — Credential Leak</option>
+        <option value="3">3 — Privilege Escalation</option>
+        <option value="4">4 — Exfiltration</option>
+      </select>
+      <span id="conn-status" class="status disconnected">disconnected</span>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="diagram-panel">
+      <div class="diagram">
+        <div class="node" id="node-attacker">Attacker</div>
+        <div class="arrow">➜</div>
+        <div class="node" id="node-public-bucket">Public Bucket<br><small>public-conf-bucket-demo</small></div>
+        <div class="arrow">➜</div>
+        <div class="node" id="node-iam">Leaked IAM Key<br><small>leaked-service-user</small></div>
+        <div class="arrow">➜</div>
+        <div class="node-group">
+          <div class="node" id="node-internal-bucket">Internal Bucket<br><small>internal-customer-data</small></div>
+          <div class="node" id="node-dynamodb">DynamoDB<br><small>CustomerPII</small></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="feed-panel">
+      <h2>Live Detection Feed</h2>
+      <ul id="feed"></ul>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
